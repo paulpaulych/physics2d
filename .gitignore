@@ -1,0 +1,5 @@
+/browser-representation/build/
+/.gradle/
+/core/build/
+/.idea/
+/build/
