@@ -26,15 +26,9 @@ dependencies {
     implementation("org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-1.4.0")
     implementation(npm("styled-components", "~5.1.1"))
     implementation(npm("inline-style-prefixer", "~6.0.0"))
+    implementation(npm("linear-equation-system", "1.1.1"))
 
-    //Video Player (chapter 7)
-    implementation(npm("react-player", "~2.6.0"))
-
-    //Share Buttons (chapter 7)
-    implementation(npm("react-share", "~4.2.1"))
-
-    //Coroutines (chapter 8)
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+    implementation(project(":core"))
 }
 
 kotlin {
