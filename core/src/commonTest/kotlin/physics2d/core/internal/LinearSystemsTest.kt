@@ -7,11 +7,11 @@ class LinearSystemsTest {
 
     @Test
     fun solveLinearSystem() {
-        val a = l[
-                l[0.0, -1.0, 1.0],
-                l[-1.0, 3.0, 0.0],
-                l[2.0, 0.0, 6.0]]
-        val b = l[2.0, 5.0, 20.0]
+        val a = ar[
+                ar[0.0, -1.0, 1.0],
+                ar[-1.0, 3.0, 0.0],
+                ar[2.0, 0.0, 6.0]]
+        val b = ar[2.0, 5.0, 20.0]
 
         val res = solveLinearEquationsSystem(a, b)
 
@@ -22,8 +22,8 @@ class LinearSystemsTest {
 
     @Test
     fun solveLinearSystemX2() {
-        val a = l[l[1.0]]
-        val b = l[3.0]
+        val a = ar[ar[1.0]]
+        val b = ar[3.0]
 
         val res = solveLinearEquationsSystem(a, b)
 

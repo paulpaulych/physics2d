@@ -1,17 +1,14 @@
 package physics2d.core.internal
 
-import mikera.matrixx.Matrix
-import mikera.matrixx.solve.Linear
+import Jama.Matrix
 
-actual fun solveLinearEquationsSystem(a: List<List<Double>>, b: List<Double>): Array<Double> =
+actual fun solveLinearEquationsSystem(a: Array<DoubleArray>, b: DoubleArray): DoubleArray =
     try {
-        
-        val a = Matrix()
-        Linear.solve()
-        //
-//        LinearSystems.solve(
-//            a.map(List<Double>::toTypedArray).toTypedArray(),
-//            b.toTypedArray())
+        val x = Matrix(a)
+            .solve(Matrix(b.map(::doubleArrayOf).toTypedArray()))
+        x.columnPackedCopy.trunc(b.size)
     } catch (e: Throwable) {
         error("cannot solve linear equations system: $e")
     }
+
+fun DoubleArray.trunc(size: Int) = asList().subList(0, size).toDoubleArray()

@@ -5,6 +5,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 kotlin {
@@ -12,15 +13,15 @@ kotlin {
         browser {
             testTask {
                 useKarma {
-                    useChrome()
+                    useFirefox()
                 }
             }
         }
     }
     jvm {
-        tasks {
-            withType(Test::class){
-                useJUnitPlatform()
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
             }
         }
     }
@@ -51,15 +52,23 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("net.mikera:vectorz:0.65.0")
+                implementation("gov.nist.math:jama:1.0.3")
             }
         }
         val jvmTest by getting {
+            val jupiterVersion = "5.7.0"
             dependencies {
                 implementation("net.mikera:vectorz:0.65.0")
-//                implementation("org.apache.commons:commons-math3:$apacheCommonsMathVersion")
-                implementation(kotlin("test-jvm"))
+                implementation(kotlin("test-junit5"))
+                implementation("org.junit.jupiter:junit-jupiter-api:$jupiterVersion")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
             }
         }
+    }
+}
+
+tasks {
+    withType(Test::class).named("jvmTest") {
+        useJUnitPlatform()
     }
 }

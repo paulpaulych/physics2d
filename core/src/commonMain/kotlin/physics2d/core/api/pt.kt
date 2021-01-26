@@ -1,6 +1,7 @@
 package physics2d.core.api
 
 import physics2d.core.internal.eq
+import kotlin.math.sqrt
 
 data class Pt(val x: Double, val y: Double){
 
@@ -11,9 +12,10 @@ data class Pt(val x: Double, val y: Double){
 
     override fun equals(other: Any?) = when {
         this === other -> true
-        other == null || other !is Pt -> false
-        x.eq(other.x) -> false
-        y.eq(other.y) -> false
+        other == null -> false
+        other !is Pt -> false
+        !x.eq(other.x) -> false
+        !y.eq(other.y) -> false
         else -> true
     }
 
@@ -23,7 +25,7 @@ data class Pt(val x: Double, val y: Double){
         return result
     }
 
-    val len by lazy { x*x + y*y }
+    val len by lazy { sqrt(x*x + y*y) }
 }
 
 fun pt(x: Int, y: Int) = Pt(x.toDouble(), y.toDouble())

@@ -6,8 +6,8 @@ import physics2d.core.api.line
 
 internal fun Segment.len() = (to - from).len
 
-internal fun Pt.belongsTo(lineSegment: Segment): Boolean {
-    val (from, to) = lineSegment
+internal fun Pt.belongsTo(segment: Segment): Boolean {
+    val (from, to) = segment
     return to-from == (this-from) + (to-this)
 }
 
