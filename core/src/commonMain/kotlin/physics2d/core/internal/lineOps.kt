@@ -7,11 +7,12 @@ import kotlin.math.sqrt
 
 internal fun Line.normal() = Pt(common.a, common.b)
 
-internal fun Pt.belongsTo(line: Line): Boolean {
-    val (a, b) = line.points
-    return crossProduct(this - a, this - b)?.isZero()
-        ?: true
-}
+internal fun Pt.belongsTo(line: Line): Boolean =
+    line.points.let { (a, b) ->
+        crossProduct(this - a, this - b)
+            ?.isZero() ?: true
+    }
+
 
 internal fun Pt.perpendicularTo(line: Line): Pt =
     line.normal()

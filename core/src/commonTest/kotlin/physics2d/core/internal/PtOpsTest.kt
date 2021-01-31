@@ -12,23 +12,23 @@ class PtOpsTest {
 
     @Test
     fun any_orthogonal_for() {
-        l[
+        listOf(
             pt(0, 1),
             pt(1, 0),
             pt(-1, 4),
             pt(-100, 100),
-        ] forEachAssert {
+        ) forEachAssert {
             anyOrthogonalFor(it) should beOrthogonalTo(it)
         }
     }
 
     @Test
     fun truncate_by_len () {
-        l[
+        listOf(
             pt(0, 10) to 5.0 to be(pt(0, 5)),
             pt(300, 400) to 250.0 to be(pt(150, 200)),
             pt(-30, -40) to 5.0 to be(pt(-3, -4)),
-        ] forEachAssert { (given, expected) ->
+        ) forEachAssert { (given, expected) ->
             given.first.resizeToLen(given.second) should expected
         }
     }

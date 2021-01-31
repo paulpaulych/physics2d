@@ -17,28 +17,44 @@ class LineOpsTest {
 
     @Test
     fun points_belong_to_YEq0() {
-        l[pt(0, 0), pt(1, 0), pt(-3, 0)] forEachAssert {
+        listOf(
+            pt(0, 0),
+            pt(1, 0),
+            pt(-3, 0)
+        ) forEachAssert {
             it.belongsTo(xAxis) shouldBe true
         }
     }
 
     @Test
     fun points_not_belong_to_YEq0() {
-        l[pt(0, 1), pt(1, 3), pt(-3, 4)] forEachAssert {
+        listOf(
+            pt(0, 1),
+            pt(1, 3),
+            pt(-3, 4)
+        ) forEachAssert {
             it.belongsTo(xAxis) shouldBe false
         }
     }
 
     @Test
     fun points_belong_to_YEqX() {
-        l[pt(-10, -10), pt(10, 10), pt(300, 300)] forEachAssert {
+        listOf(
+            pt(-10, -10),
+            pt(10, 10),
+            pt(300, 300)
+        ) forEachAssert {
             it.belongsTo(yEqXLine) shouldBe true
         }
     }
 
     @Test
     fun points_not_belong_to_YEqX() {
-        l[pt(-301, -300), pt(201, 200), pt(300, 400)].forEach {
+        listOf(
+            pt(-301, -300),
+            pt(201, 200),
+            pt(300, 400)
+        ) forEachAssert  {
             it.belongsTo(yEqXLine) shouldBe false
         }
     }
