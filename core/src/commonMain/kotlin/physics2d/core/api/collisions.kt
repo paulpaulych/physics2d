@@ -8,12 +8,13 @@ import physics2d.core.internal.len
 data class Collision(val v: Segment)
 
 fun collisionFor(a: AABB, b: AABB): Collision? {
-    val intersectionsByAxes: List<Segment> =
-        separationAxesFor(a, b)
-            .fold(listOf<Segment>()) { intersectionsOfProjections, axis ->
-                intersectionOf(a.projectionTo(axis), b.projectionTo(axis))
-                    ?.let { intersectionsOfProjections + it }
-                    ?: intersectionsOfProjections
-            }
-    return intersectionsByAxes.minByOrNull(Segment::len)?.let(::Collision)
+    val axes = separationAxesFor(a, b)
+    val projections = axes.fold(listOf<Segment>()) { acc, axis ->
+        val aProj = a.projectTo(axis)
+        val bProj = b.projectTo(axis)
+        val intersection = intersectionOf(aProj, bProj)
+        acc.addIfNotNull(intersection)
+    }
+    return projections.minByOrNull(Segment::len)
+        ?.let(::Collision)
 }

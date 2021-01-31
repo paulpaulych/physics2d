@@ -13,27 +13,14 @@ internal class LineImpl(p1: Pt, p2: Pt): Line {
         require(p1 != p2) { "points must be different to create line" }
     }
 
-    override fun equals(other: Any?) = when {
-        this === other -> true
-        other == null || other !is Line -> false
-        common.a.eq(other.common.a) -> false
-        common.b.eq(other.common.b) -> false
-        common.c.eq(other.common.c) -> false
-        else -> true
-    }
-
-    override fun hashCode(): Int {
-        var result = common.a.hashCode()
-        result = 31 * result + common.b.hashCode()
-        result = 31 * result + common.c.hashCode()
-        return result
-    }
+    override fun toString() = "LineImpl(points=$points)"
 }
 
 private fun commonLineEquation(p1: Pt, p2: Pt): CommonLineEquation {
     val directingVector = p2 - p1
     val normal = anyOrthogonalFor(directingVector)
+        ?: error("no orthogonal vectors for: $directingVector")
     val (a, b) = normal
-    val c = (a*(p2.x + p1.x) + b*(p2.y + p1.y)) / 2
+    val c = (a*(p2.x + p1.x) + b*(p2.y + p1.y)) / (-2)
     return CommonLineEquation(a, b, c)
 }

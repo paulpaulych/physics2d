@@ -1,6 +1,7 @@
 package physics2d.core.api
 
 import physics2d.core.internal.eq
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 data class Pt(val x: Double, val y: Double){
@@ -19,11 +20,7 @@ data class Pt(val x: Double, val y: Double){
         else -> true
     }
 
-    override fun hashCode(): Int {
-        var result = x.hashCode()
-        result = 31 * result + y.hashCode()
-        return result
-    }
+    override fun hashCode() = 31 * x.roundToInt() + y.roundToInt()
 
     val len by lazy { sqrt(x*x + y*y) }
 }

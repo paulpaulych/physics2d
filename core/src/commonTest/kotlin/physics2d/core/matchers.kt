@@ -3,7 +3,6 @@ package physics2d.core
 import io.kotest.assertions.withClue
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult
-import io.kotest.matchers.should
 import physics2d.core.api.Pt
 import physics2d.core.internal.eq
 
@@ -23,9 +22,9 @@ fun beDouble(other: Double) = matcher<Double?> {
     )
 }
 
-fun beOrthogonalTo(other: Pt) = matcher<Pt> {
+fun beOrthogonalTo(other: Pt) = matcher<Pt?> {
     MatcherResult(
-        0.0.eq(x * other.x + y * other.y),
+        this != null && 0.0.eq(x * other.x + y * other.y),
         "$this should be orthogonal to $other",
         "$this is not orthogonal to $other"
     )

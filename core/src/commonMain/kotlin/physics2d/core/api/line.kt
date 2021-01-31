@@ -14,5 +14,3 @@ data class CommonLineEquation(val a: Double, val b: Double, val c: Double) {
         }
     }
 }
-
-fun Line.normal() = Pt(common.a, common.b)
