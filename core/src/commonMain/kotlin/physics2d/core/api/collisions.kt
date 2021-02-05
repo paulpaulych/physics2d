@@ -1,11 +1,12 @@
 package physics2d.core.api
 
-import physics2d.core.api.figures.AABB
 import physics2d.core.internal.*
 import physics2d.core.internal.intersectionOf
 import physics2d.core.internal.len
 
-data class Collision(val v: Segment)
+data class Collision internal constructor(
+    val segment: Segment,
+    val len: Double)
 
 fun collisionFor(a: AABB, b: AABB): Collision? {
     val axes = separationAxesFor(a, b)
@@ -15,6 +16,7 @@ fun collisionFor(a: AABB, b: AABB): Collision? {
         val intersection = intersectionOf(aProj, bProj)
         acc.addIfNotNull(intersection)
     }
-    return projections.minByOrNull(Segment::len)
-        ?.let(::Collision)
+    return projections.associateWith(Segment::len)
+        .minByOrNull { it.value }
+        ?.let { (v, len) -> Collision(v, len) }
 }

@@ -1,6 +1,7 @@
 package physics2d.core.internal
 
 import io.kotest.matchers.shouldBe
+import physics2d.core.api.Segment
 import physics2d.core.api.pt
 import kotlin.test.Test
 

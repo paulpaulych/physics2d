@@ -1,7 +1,8 @@
 package physics2d.core.internal
 
 import io.kotest.matchers.shouldBe
-import physics2d.core.api.figures.aabb
+import physics2d.core.api.Segment
+import physics2d.core.api.aabb
 import physics2d.core.api.pt
 import physics2d.core.api.xAxis
 import physics2d.core.api.yAxis

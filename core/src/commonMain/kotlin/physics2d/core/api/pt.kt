@@ -4,7 +4,7 @@ import physics2d.core.internal.eq
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
-data class Pt(val x: Double, val y: Double){
+data class Pt internal constructor(val x: Double, val y: Double){
 
     operator fun minus(o: Pt): Pt = Pt(o.x - x, o.y - y)
     operator fun plus(o: Pt): Pt = Pt(o.x + x, o.y + y)

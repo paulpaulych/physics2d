@@ -1,7 +1,4 @@
-package physics2d.core.api.figures
-
-import physics2d.core.api.Pt
-import physics2d.core.api.pt
+package physics2d.core.api
 
 data class AABB internal constructor(
     val p: Pt,

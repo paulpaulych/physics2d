@@ -1,8 +1,6 @@
-package physics2d.core.internal
+package physics2d.core.api
 
-import physics2d.core.api.Pt
-
-data class Segment(
+data class Segment internal constructor(
     val p1: Pt,
     val p2: Pt
 ) {

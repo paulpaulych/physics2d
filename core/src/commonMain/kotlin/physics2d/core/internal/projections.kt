@@ -2,7 +2,8 @@ package physics2d.core.internal
 
 import physics2d.core.api.Line
 import physics2d.core.api.Pt
-import physics2d.core.api.figures.AABB
+import physics2d.core.api.Segment
+import physics2d.core.api.AABB
 import physics2d.core.api.pt
 
 private const val MAX_VALUE = Double.MAX_VALUE

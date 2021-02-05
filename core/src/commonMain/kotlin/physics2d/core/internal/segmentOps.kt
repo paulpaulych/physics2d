@@ -2,6 +2,7 @@ package physics2d.core.internal
 
 import physics2d.core.api.Line
 import physics2d.core.api.Pt
+import physics2d.core.api.Segment
 import physics2d.core.api.line
 import kotlin.math.max
 import kotlin.math.min
