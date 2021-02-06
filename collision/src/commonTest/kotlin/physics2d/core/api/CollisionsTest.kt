@@ -1,6 +1,8 @@
 package physics2d.core.api
 
+import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
+import physics2d.core.beIn
 import kotlin.test.Test
 
 internal class CollisionsTest {
@@ -8,25 +10,27 @@ internal class CollisionsTest {
     @Test
     fun noCollisionBetweenAabbs() {
         collisionFor(
-            aabb(pt(0, 0), 1, 1),
-            aabb(pt(-3, -3), 1, 1)
+            rect(pt(0, 0), pt(2, 2)),
+            rect(pt(-3, -3), pt(2, 2))
         ) shouldBe null
 
         collisionFor(
-            aabb(pt(100, 100), 100, 100),
-            aabb(pt(300, 300), 100, 200)
+            rect(pt(100, 100), pt(200, 200)),
+            rect(pt(300, 300), pt(500, 300))
         ) shouldBe null
     }
 
+    @ExperimentalStdlibApi
     @Test
     fun collisionBetweenAabbs() {
-        //todo:
-        collisionFor(
-            aabb(pt(0, 0), 200, 150),
-            aabb(pt(200, 200), 200, 200)
-        ) shouldBe Collision(
-            segment = Segment(pt(200, 200), pt(200, 300)),
-            len = 100.0
+        val res = collisionFor(
+            rect(pt(0, 0), pt(400, 300)),
+            rect(pt(200, 200), pt(400, 300))
+        )
+
+        res?.v should beIn(
+            pt(0, 100),
+            pt(0, -100)
         )
     }
 }

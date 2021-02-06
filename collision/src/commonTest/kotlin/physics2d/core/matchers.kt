@@ -33,3 +33,6 @@ fun beOrthogonalTo(other: Pt) = matcher<Pt?> {
 fun <T> matcher(test: T.() -> MatcherResult) = object : Matcher<T> {
     override fun test(value: T) = test(value)
 }
+
+@ExperimentalStdlibApi
+fun <T> beIn(vararg e: T): Matcher<T> = io.kotest.matchers.collections.beIn(buildList { addAll(e) })

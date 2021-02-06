@@ -3,7 +3,7 @@ package physics2d.core.internal
 import physics2d.core.api.Line
 import physics2d.core.api.Pt
 import physics2d.core.api.Segment
-import physics2d.core.api.AABB
+import physics2d.core.api.Rect
 import physics2d.core.api.pt
 
 private const val MAX_VALUE = Double.MAX_VALUE
@@ -11,7 +11,7 @@ private const val MIN_VALUE = -Double.MAX_VALUE
 
 internal fun Pt.projectTo(line: Line) = this + perpendicularTo(line)
 
-internal fun AABB.projectTo(line: Line): Segment =
+internal fun Rect.projectTo(line: Line): Segment =
     pointsToProject()
         .map { it.projectTo(line) }
         .toSegmentOn(line)
@@ -29,16 +29,8 @@ private fun List<Pt>.toSegmentOn(line: Line): Segment {
 
 private fun Line.isVertical() = common.b.isZero()
 
-// TODO: are half-widths needed?
-private fun AABB.pointsToProject() = listOf(
-    // angles
-    p,
-    p + pt(0.0, 2*wx),
-    p + pt(2*wx, 0.0),
-    p + pt(2*wx, 2*wx),
-    // half-widths
-    p + pt(0.0, hy),
-    p + pt(wx, 0.0),
-    p + pt(2*wx, hy),
-    p + pt(wx, 2*hy),
-)
+private fun Rect.pointsToProject() = listOf(
+    start,
+    start + pt(0.0, size.y),
+    start + pt(size.x, 0.0),
+    start + size)

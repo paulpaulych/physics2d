@@ -2,7 +2,7 @@ package physics2d.core.internal
 
 import io.kotest.matchers.shouldBe
 import physics2d.core.api.Segment
-import physics2d.core.api.aabb
+import physics2d.core.api.rect
 import physics2d.core.api.pt
 import physics2d.core.api.xAxis
 import physics2d.core.api.yAxis
@@ -22,15 +22,15 @@ class ProjectionsTest {
     }
 
     @Test
-    fun project_aabb() {
-        with(aabb(0, 0, 1, 1)) {
+    fun project_rect() {
+        with(rect(pt(0, 0), pt(2, 2))) {
             projectTo(xAxis) shouldBe Segment(pt(0,0), pt(2,0))
             projectTo(yAxis) shouldBe Segment(pt(0,0), pt(0,2))
             projectTo(yEqXLine) shouldBe Segment(pt(0,0), pt(2,2))
             projectTo(yEqMinusX) shouldBe Segment(pt(-1,1), pt(1,-1))
         }
 
-        with(aabb(-30, -30, 20, 20)) {
+        with(rect(pt(-30, -30), pt(40, 40))) {
             projectTo(xAxis) shouldBe Segment(pt(10,0), pt(-30,0))
             projectTo(yAxis) shouldBe Segment(pt(0,10), pt(0,-30))
             projectTo(yEqXLine) shouldBe Segment(pt(-30,-30), pt(10,10))

@@ -5,10 +5,10 @@ import physics2d.core.internal.intersectionOf
 import physics2d.core.internal.len
 
 data class Collision internal constructor(
-    val segment: Segment,
+    val v: Pt,
     val len: Double)
 
-fun collisionFor(a: AABB, b: AABB): Collision? {
+fun collisionFor(a: Rect, b: Rect): Collision? {
     val axes = separationAxesFor(a, b)
     val projections = axes.fold(listOf<Segment>()) { acc, axis ->
         val aProj = a.projectTo(axis)
@@ -18,5 +18,5 @@ fun collisionFor(a: AABB, b: AABB): Collision? {
     }
     return projections.associateWith(Segment::len)
         .minByOrNull { it.value }
-        ?.let { (v, len) -> Collision(v, len) }
+        ?.let { (v, len) -> Collision(v.p2 - v.p1, len) }
 }
