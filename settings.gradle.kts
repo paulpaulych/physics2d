@@ -1,4 +1,4 @@
 rootProject.name = "physics2d"
 
-include(":core")
-include(":browser-representation")
+include(":collision")
+include(":game-ui")

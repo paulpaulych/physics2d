@@ -28,7 +28,7 @@ dependencies {
     implementation(npm("inline-style-prefixer", "~6.0.0"))
     implementation(npm("linear-equation-system", "1.1.1"))
 
-    implementation(project(":core"))
+    implementation(project(":collision"))
 }
 
 kotlin {
