@@ -22,12 +22,12 @@ dependencies {
     implementation(npm("react-is", "16.8.0"))
     implementation(npm("react-dom", reactVersion))
 
-    //Kotlin Styled (chapter 3)
     implementation("org.jetbrains:kotlin-styled:1.0.0-pre.110-kotlin-1.4.0")
     implementation(npm("styled-components", "~5.1.1"))
     implementation(npm("inline-style-prefixer", "~6.0.0"))
     implementation(npm("linear-equation-system", "1.1.1"))
 
+    implementation(project(":game"))
     implementation(project(":collision"))
 }
 
