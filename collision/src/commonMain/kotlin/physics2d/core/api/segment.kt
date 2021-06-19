@@ -1,8 +1,8 @@
 package physics2d.core.api
 
 data class Segment internal constructor(
-    val p1: Pt,
-    val p2: Pt
+    val p1: Vec,
+    val p2: Vec
 ) {
 
     init {

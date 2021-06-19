@@ -6,7 +6,7 @@ import physics2d.browser.listenerForKeys
 import physics2d.browser.removeKeyListener
 import physics2d.browser.setKeyListener
 import physics2d.browser.svg.*
-import physics2d.core.api.vec
+import physics2d.core.api.pt
 import physics2d.game.Game
 import physics2d.game.GameState
 import physics2d.game.Turn
@@ -25,10 +25,10 @@ val RGame = functionalComponent<RGameProps> { props ->
     fun doTurn(turn: Turn) = setState(game.tick(turn))
     useKeyListener { key: Key ->
         val turn = when(key){
-            ArrowUp -> MoveTo(vec(0, -10))
-            ArrowDown -> MoveTo(vec(0, 10))
-            ArrowLeft -> MoveTo(vec(-10, 0))
-            ArrowRight -> MoveTo(vec(10, 0))
+            ArrowUp -> MoveTo(pt(0, -10))
+            ArrowDown -> MoveTo(pt(0, 10))
+            ArrowLeft -> MoveTo(pt(-10, 0))
+            ArrowRight -> MoveTo(pt(10, 0))
         }
         doTurn(turn)
     }

@@ -1,17 +1,15 @@
 package physics2d.game
 
-import physics2d.core.api.Vec
+import physics2d.core.api.Pt
 import physics2d.core.api.Rect
-import physics2d.core.api.vec
+import physics2d.core.api.pt
 import physics2d.core.api.rect
 
 fun initialState(config: Config) = GameState(
-    player = rect(config.fieldCenter(), vec(30, 30))
+   rect = rect(config.fieldCenter(), pt(30, 30))
 )
 
-data class GameState(
-    val player: Rect,
-)
+data class GameState(val rect: Rect)
 
 internal fun interface Action {
     fun act(state: GameState): GameState
@@ -34,15 +32,15 @@ class Game(
 private fun actionFor(turn: Turn?) = when(turn){
     null -> noAction
     is Turn.MoveTo -> Action { state ->
-        val rect = state.player
-        GameState(rect.copy(start = rect.start + turn.vec))
+        val rect = state.rect
+        GameState(rect.copy(start = rect.start + turn.pt))
     }
 }
 
 private val noAction = Action { it }
 
 sealed class Turn {
-    data class MoveTo(val vec: Vec): Turn()
+    data class MoveTo(val pt: Pt): Turn()
 }
 
 data class Config(
@@ -59,4 +57,4 @@ data class Config(
     }
 }
 
-private fun Config.fieldCenter() = vec(fieldWidth / 2, fieldHeight / 2)
+private fun Config.fieldCenter() = pt(fieldWidth / 2, fieldHeight / 2)

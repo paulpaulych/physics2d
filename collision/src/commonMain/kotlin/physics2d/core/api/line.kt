@@ -1,16 +1,20 @@
 package physics2d.core.api
 
-import physics2d.core.internal.isZero
-
-interface Line {
-    val common: CommonLineEquation
-    val points: Pair<Pt, Pt>
-}
-
-data class CommonLineEquation(val a: Double, val b: Double, val c: Double) {
+data class Line internal constructor(
+    val v1: Vec,
+    val v2: Vec
+) {
     init {
-        require(!a.isZero() || !b.isZero()){
-            "A and B cannot be both equal to zero"
+        require(v1 != v2) {
+            "points must be different to create line"
         }
     }
 }
+
+object Lines {
+    val xAxis = line(Vec(0.0, 0.0), Vec(1.0, 0.0))
+    val yAxis = line(Vec(0.0, 0.0), Vec(0.0, 1.0))
+}
+
+fun line(vec1: Vec, vec2: Vec): Line = Line(vec1, vec2)
+

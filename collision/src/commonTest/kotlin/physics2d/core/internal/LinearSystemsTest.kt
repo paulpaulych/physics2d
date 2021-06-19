@@ -2,6 +2,7 @@ package physics2d.core.internal
 
 import io.kotest.matchers.should
 import physics2d.core.beDouble
+import physics2d.core.internal.math.solveLinearSystem
 import kotlin.test.Test
 
 class LinearSystemsTest {
@@ -14,7 +15,7 @@ class LinearSystemsTest {
             doubleArrayOf(2.0, 0.0, 6.0))
         val b = doubleArrayOf(2.0, 5.0, 20.0)
 
-        val res = solveLinearEquationsSystem(a, b)
+        val res = solveLinearSystem(a, b)
 
         res[0] should beDouble(-0.5)
         res[1] should beDouble(1.5)
@@ -26,7 +27,7 @@ class LinearSystemsTest {
         val a = arrayOf(doubleArrayOf(1.0))
         val b = doubleArrayOf(3.0)
 
-        val res = solveLinearEquationsSystem(a, b)
+        val res = solveLinearSystem(a, b)
 
         res[0] should beDouble(3.0)
     }

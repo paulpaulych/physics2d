@@ -15,7 +15,7 @@ val RField = functionalComponent<RFieldProps> { props ->
         background(props.fieldWidth, props.fieldHeight)
         svgRect {
             attrs {
-                val rect = props.gameState.player
+                val rect = props.gameState.rect
                 width = rect.size.x.toInt()
                 height = rect.size.y.toInt()
                 x = rect.start.x.toInt()

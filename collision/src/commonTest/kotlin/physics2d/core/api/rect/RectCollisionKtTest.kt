@@ -1,12 +1,14 @@
-package physics2d.core.api
+package physics2d.core.api.rect
 
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import physics2d.core.api.collisions.collisionFor
+import physics2d.core.api.rect
+import physics2d.core.api.vec
 import physics2d.core.beIn
 import kotlin.test.Test
 
-internal class CollisionsTest {
+internal class RectCollisionKtTest {
 
     @Test
     fun noCollisionBetweenAabbs() {
