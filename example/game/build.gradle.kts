@@ -29,7 +29,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation(project(":collision"))
+                api(project(":physics2d-core"))
             }
         }
         val kotestVersion: String by project

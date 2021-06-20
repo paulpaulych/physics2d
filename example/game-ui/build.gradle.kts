@@ -2,8 +2,12 @@ plugins {
     id("org.jetbrains.kotlin.js") version "1.4.21"
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+kotlin {
+    js {
+        browser()
+        binaries.executable()
+    }
+}
 
 repositories {
     maven("https://kotlin.bintray.com/kotlin-js-wrappers/")
@@ -27,13 +31,5 @@ dependencies {
     implementation(npm("inline-style-prefixer", "~6.0.0"))
     implementation(npm("linear-equation-system", "1.1.1"))
 
-    implementation(project(":game"))
-    implementation(project(":collision"))
-}
-
-kotlin {
-    js {
-        browser()
-        binaries.executable()
-    }
+    implementation(project(":example:game"))
 }

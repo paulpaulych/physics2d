@@ -1,21 +1,25 @@
 package physics2d.browser.game
 
-import physics2d.browser.svg.*
-import physics2d.game.GameState
+import physics2d.browser.platform.svg.*
+import physics2d.game.core.GameField
 import react.*
 
 data class RFieldProps(
     var fieldWidth: Int,
     var fieldHeight: Int,
-    var gameState: GameState
+    var gameState: GameField
 ): RProps
 
-val RField = functionalComponent<RFieldProps> { props ->
+fun RBuilder.field(handler: RHandler<RFieldProps>): ReactElement {
+    return child(RField, handler = handler)
+}
+
+private val RField = functionalComponent<RFieldProps> { props ->
     g {
         background(props.fieldWidth, props.fieldHeight)
         svgRect {
             attrs {
-                val rect = props.gameState.rect
+                val rect = props.gameState.player
                 width = rect.size.x.toInt()
                 height = rect.size.y.toInt()
                 x = rect.start.x.toInt()
@@ -26,10 +30,7 @@ val RField = functionalComponent<RFieldProps> { props ->
     }
 }
 
-fun RBuilder.field(handler: RHandler<RFieldProps>): ReactElement =
-    child(RField, handler = handler)
-
-fun RBuilder.background(w: Int, h: Int) {
+private fun RBuilder.background(w: Int, h: Int) {
     svgRect {
         attrs {
             width = w
@@ -41,11 +42,3 @@ fun RBuilder.background(w: Int, h: Int) {
         }
     }
 }
-
-enum class Color(val string: String){
-    Black("black"),
-    Red("red"),
-    Green("black");
-}
-
-fun Color.next() = ordinal.let { Color.values()[it + 1] }

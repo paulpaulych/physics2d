@@ -3,3 +3,5 @@
 /core/build/
 /.idea/
 /build/
+/example/game-ui/build/
+/example/game/build/

@@ -1,4 +1,4 @@
-package physics2d.browser.svg
+package physics2d.browser.platform.svg
 
 import kotlinx.html.TagConsumer
 import react.RBuilder

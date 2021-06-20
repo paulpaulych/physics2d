@@ -1,4 +1,3 @@
-
 plugins {
     kotlin("multiplatform") version "1.4.21"
 }
@@ -29,7 +28,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation(project(":collision"))
             }
         }
         val kotestVersion: String by project
@@ -41,9 +39,19 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
+        val jsMain by getting {
+            dependencies {
+                implementation(npm("linear-solve", "1.2.1"))
+            }
+        }
         val jsTest by getting {
             dependencies {
                 implementation(kotlin("test-js"))
+            }
+        }
+        val jvmMain by getting {
+            dependencies {
+                implementation("gov.nist.math:jama:1.0.3")
             }
         }
         val jvmTest by getting {

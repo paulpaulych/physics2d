@@ -1,4 +1,4 @@
-package physics2d.browser.svg
+package physics2d.browser.platform.svg
 
 import kotlinx.html.HTMLTag
 import kotlinx.html.HtmlBlockInlineTag
@@ -18,9 +18,10 @@ open class SvgTag(
 
 inline fun RBuilder.svg(block: RDOMBuilder<Svg>.() -> Unit) = tag(block, ::Svg)
 
-open class Svg(override val consumer: TagConsumer<*>)
-    : SvgTag(
-        tagName = "svg",
+open class Svg(
+    override val consumer: TagConsumer<*>
+) : SvgTag(
+    tagName = "svg",
         consumer,
         mapOf(),
         "http://www.w3.org/2000/svg",
